@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  oracleapex_23.2:
+  oracleapex2:
     build:
       context: .
       args:
@@ -11,12 +11,16 @@ services:
         - DB_SERVICE=${DB_SERVICE}
         - SYSDBA_USER=${SYSDBA_USER}
         - HOSTNAME_=${HOSTNAME_}
-    container_name: oracleapex23.2
+    container_name: oracleapex2
     volumes:
     #  -./volumes/oradata:/opt/oracle/oradata
       - ./scripts/setup:/opt/oracle/scripts/setup
       - ./scripts/startup:/opt/oracle/scripts/startup
     ports:
-      - '8080:8080'
-   
-    
+      - '8088:8080'
+      - '1522:1521'
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:

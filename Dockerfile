@@ -37,6 +37,7 @@ USER oracle
 COPY password .
 COPY 02_sql.sql .
 
-RUN lsnrctl start && sqlplus / as sysdba @02_sql & sleep 60 && ./setPassword.sh ${ORACLE_PWD} && lsnrctl status && ords --config ${ORDS_CONFIG} install --log-folder ${ORDS_LOGS}  --admin-user ${SYSDBA_USER}  --db-hostname ${HOSTNAME_}  --db-port ${DB_PORT} --db-servicename ${DB_SERVICE} --feature-db-api true --feature-rest-enabled-sql true --feature-sdw true    --gateway-mode proxied  --gateway-user APEX_PUBLIC_USER --proxy-user --password-stdin < password
+RUN lsnrctl start && sqlplus / as sysdba @02_sql & sleep 200 && ./setPassword.sh ${ORACLE_PWD} && lsnrctl status && ords --config ${ORDS_CONFIG} install --log-folder ${ORDS_LOGS}  --admin-user ${SYSDBA_USER}  --db-hostname ${HOSTNAME_}  --db-port ${DB_PORT} --db-servicename ${DB_SERVICE} --feature-db-api true --feature-rest-enabled-sql true --feature-sdw true    --gateway-mode proxied  --gateway-user APEX_PUBLIC_USER --proxy-user --password-stdin < password
+
 
 WORKDIR /opt/oracle/
